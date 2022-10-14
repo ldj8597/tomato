@@ -1,11 +1,12 @@
-import Sidebar from "../components/layout/Sidebar";
+import Feed from "../components/ui/Feed";
+import Sidebar from "../components/ui/Sidebar";
 import { NextPageWithLayout } from "./_app";
 
 const Home: NextPageWithLayout = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="flex-1">Feed</div>
+      <Feed className="flex-1" />
       <div>Widget</div>
     </div>
   );

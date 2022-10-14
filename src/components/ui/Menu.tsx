@@ -25,7 +25,7 @@ export default function Menu() {
         <Link href={link.target} key={link.target}>
           <a className="flex items-center gap-2 rounded-full py-2 pl-2 pr-5 hover:bg-slate-200">
             <link.Icon className="h-8 w-8" />
-            <span className="text-lg">{link.text}</span>
+            <span className="hidden text-lg lg:block">{link.text}</span>
           </a>
         </Link>
       ))}
