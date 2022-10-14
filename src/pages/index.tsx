@@ -1,9 +1,12 @@
-import type { NextPage } from "next";
+import Sidebar from "../components/layout/Sidebar";
+import { NextPageWithLayout } from "./_app";
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
   return (
-    <div>
-      <h1 className="text-4xl">Hello World</h1>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1">Feed</div>
+      <div>Widget</div>
     </div>
   );
 };
