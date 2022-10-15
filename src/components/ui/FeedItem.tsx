@@ -6,7 +6,14 @@ import {
 } from "@heroicons/react/24/outline";
 import Avatar from "./Avatar";
 
-export default function FeedItem() {
+type FeedItemProps = {
+  image?: string;
+  name?: string;
+  email?: string;
+  text: string;
+};
+
+export default function FeedItem({ image, name, email, text }: FeedItemProps) {
   return (
     <div className="flex cursor-pointer gap-2 border-b border-blue-200 px-5 py-2 hover:bg-slate-100">
       <Avatar image="/avatar.jpg" />
@@ -15,6 +22,7 @@ export default function FeedItem() {
           <span className="text-lg font-semibold">Dongjun Lee </span>
           @dongjunlee.gamil.com
         </p>
+        <div>{text}</div>
         <div className="flex items-center justify-between">
           <ChatBubbleOvalLeftIcon className="w-5 text-slate-500" />
           <ArrowPathRoundedSquareIcon className="w-5 text-slate-500" />

@@ -2,12 +2,16 @@ import FeedHeader from "./FeedHeader";
 import clsx from "clsx";
 import FeedInput from "./FeedInput";
 import FeedItem from "./FeedItem";
+import { trpc } from "../../utils/trpc";
 
 type FeedProps = {
   className?: string;
 };
 
 export default function Feed({ className }: FeedProps) {
+  const postQuery = trpc.post.fromFollowing.useQuery();
+
+  console.log(postQuery.data);
   return (
     <div
       className={clsx(
@@ -17,7 +21,13 @@ export default function Feed({ className }: FeedProps) {
     >
       <FeedHeader />
       <FeedInput />
-      <FeedItem />
+      {postQuery.data && (
+        <div>
+          {postQuery.data.map((post) => (
+            <FeedItem key={post.id} text={post.text} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
