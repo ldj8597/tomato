@@ -9,7 +9,9 @@ type WidgetProps = {
 
 export default function Widget({ className }: WidgetProps) {
   return (
-    <div className={clsx("flex w-96 flex-col gap-5 border-r px-5", className)}>
+    <div
+      className={clsx("flex w-96 flex-col space-y-5 border-r px-5", className)}
+    >
       <SearchBar />
       <News />
       <RandomUser />

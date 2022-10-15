@@ -52,6 +52,8 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    followedBy    Follows[] @relation("following") //User is following in Follows
+    following     Follows[] @relation("follower") //User is follower in Follows
 }
 
 model VerificationToken {
@@ -71,4 +73,13 @@ model Post {
     text      String   @db.Text
 
     @@index([userId])
+}
+
+model Follows {
+    follower    User   @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+    followerId  String
+    following   User   @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+    followingId String
+
+    @@id([followerId, followingId])
 }

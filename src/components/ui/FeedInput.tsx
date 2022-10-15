@@ -6,11 +6,13 @@ import { useSession } from "next-auth/react";
 import Avatar from "./Avatar";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { trpc } from "../../utils/trpc";
 
 export default function FeedInput() {
   const { data: session } = useSession({ required: true });
   const [post, setPost] = useState("");
   const router = useRouter();
+  const postMutation = trpc.post.add.useMutation();
 
   return (
     <div className="flex gap-2 border-b border-blue-200 px-5 py-2">
@@ -24,7 +26,10 @@ export default function FeedInput() {
         onClick={(e) => {
           e.preventDefault();
           if (!post.trim()) return;
+          if (postMutation.isLoading) return;
+
           console.log(post);
+          postMutation.mutate({ text: post });
         }}
         className="flex-1 space-y-2"
       >
@@ -47,8 +52,8 @@ export default function FeedInput() {
           <Button
             type="submit"
             className="text-sm"
-            text="Tweet"
-            disabled={post.trim() === ""}
+            text={postMutation.isLoading ? "Tweeting" : "Tweet"}
+            disabled={post.trim() === "" || postMutation.isLoading}
           />
         </div>
       </form>
