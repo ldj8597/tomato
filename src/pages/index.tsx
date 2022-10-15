@@ -1,5 +1,6 @@
 import Feed from "../components/ui/Feed";
 import Sidebar from "../components/ui/Sidebar";
+import Widget from "../components/ui/Widget";
 import { NextPageWithLayout } from "./_app";
 
 const Home: NextPageWithLayout = () => {
@@ -7,7 +8,7 @@ const Home: NextPageWithLayout = () => {
     <div className="flex">
       <Sidebar />
       <Feed className="flex-1" />
-      <div>Widget</div>
+      <Widget className="hidden lg:block" />
     </div>
   );
 };
