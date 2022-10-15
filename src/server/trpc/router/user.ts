@@ -19,5 +19,26 @@ export const userRouter = router({
       console.log(
         `${session.user.id} is trying to follow ${input.followingId}`
       );
+      const exists = await prisma.follows.findUnique({
+        where: {
+          followerId_followingId: {
+            followerId: session.user.id,
+            followingId: input.followingId,
+          },
+        },
+      });
+      if (exists) {
+        throw new TRPCError({
+          code: "CONFLICT",
+          message: "Already followed",
+        });
+      }
+      const follows = await prisma.follows.create({
+        data: {
+          followerId: session.user.id,
+          followingId: input.followingId,
+        },
+      });
+      return follows;
     }),
 });
