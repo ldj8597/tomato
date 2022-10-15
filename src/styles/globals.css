@@ -6,4 +6,8 @@
   .btn {
     @apply rounded-full bg-blue-500 px-5 py-2 text-lg font-bold text-white hover:bg-blue-600 disabled:bg-blue-200;
   }
+
+  .logo {
+    @apply flex h-12 w-12 items-center justify-center rounded-full hover:bg-blue-200;
+  }
 }
