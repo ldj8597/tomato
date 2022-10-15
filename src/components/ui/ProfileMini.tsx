@@ -8,9 +8,9 @@ export default function ProfileMini() {
   const { data: session } = useSession({ required: true });
 
   return (
-    <button
+    <div
       onClick={() => setOpen((prev) => !prev)}
-      className="relative flex items-center justify-center rounded-full px-2 py-2 hover:bg-slate-100 lg:aspect-auto lg:justify-between lg:px-3"
+      className="relative flex cursor-pointer items-center justify-center rounded-full px-2 py-2 hover:bg-slate-100 lg:aspect-auto lg:justify-between lg:px-3"
     >
       <div className="flex items-center gap-2">
         <Avatar image={session?.user?.image} />
@@ -32,6 +32,6 @@ export default function ProfileMini() {
         <button>Add an existing account</button>
         <button onClick={() => signOut()}>Log out</button>
       </div>
-    </button>
+    </div>
   );
 }
